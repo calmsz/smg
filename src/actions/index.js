@@ -1,3 +1,3 @@
-export { AddRound } from './ActionsTypes'
-// export { ResetGame } from './ResetGame'
-// export { ValidateGame } from './ValidateGame'
+export { AddRound } from './actionCreators'
+export { FillAttempt } from './actionCreators'
+export { ClearAttempt } from './actionCreators'

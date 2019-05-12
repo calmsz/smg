@@ -1,71 +1,34 @@
 import React from 'react'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { CheckButton } from '../styles'
-// import { AddRound } from '../actions'
+import { AddRound, ClearAttempt } from '../actions/actionCreators'
 
 // helpers
 import { getRandomElement } from '../helpers'
 
-export class CheckRound extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { CardsSequence: [] };
-  // }
+function mapStateToProps (state) {
+  return { currentArray: state.CardsSequence.currentArray, attemptArray: state.CardsSequence.attemptArray }
+}
 
-  // handleAddRound = () => {
-  //   this.props.AddRound(getRandomElement(this.props.elements));
-  // };
+function mapDispatchToProps (dispatch) {
+  return {
+    dispatch
+  }
+}
+class CheckRound extends React.Component {
+  handleAddRound () {
+    this.props.dispatch(ClearAttempt())
+    this.props.dispatch(AddRound(getRandomElement(this.props.elements)))
+  }
 
   render () {
+    this.handleAddRound = this.handleAddRound.bind(this)
     return (
-      <CheckButton onClick={() => { console.log(getRandomElement(this.props.elements)) }} >
-        <h3>Check!</h3>
+      <CheckButton onClick={this.handleAddRound} >
+        <h3>Next Round</h3>
       </CheckButton>
     )
   }
-};
+}
 
-// export default connect(
-//   null,
-//   { AddRound }
-// )(CheckRound);
-
-// import React from 'react';
-// import { connect } from 'react-redux';
-// import { addTodo } from '../redux/actions';
-
-// class AddTodo extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { input: '' };
-//   }
-
-//   updateInput = input => {
-//     this.setState({ input });
-//   };
-
-//   handleAddTodo = () => {
-//     this.props.addTodo(this.state.input);
-//     this.setState({ input: '' });
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         <input
-//           onChange={e => this.updateInput(e.target.value)}
-//           value={this.state.input}
-//         />
-//         <button className='add-todo' onClick={this.handleAddTodo}>
-//           Add Todo
-//         </button>
-//       </div>
-//     );
-//   }
-// }
-
-// export default connect(
-//   null,
-//   { addTodo }
-// )(AddTodo);
-// // export default AddTodo;
+export default connect(mapStateToProps, mapDispatchToProps)(CheckRound)

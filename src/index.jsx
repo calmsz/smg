@@ -3,15 +3,9 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import MainApp from './MainApp.jsx'
 
 import rootReducer from './reducers'
-
-// components
-import { CardsGrid } from './components/CardsGrid'
-import { CheckRound } from './components/CheckRound'
-
-// mockup-data
-import { MockedElements } from './data'
 
 const store = createStore(
   rootReducer,
@@ -20,9 +14,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <div><h1>Sequence memory game</h1></div>
-    <CheckRound elements={MockedElements} />
-    <CardsGrid elements={MockedElements} />
+    <MainApp />
   </Provider>,
   document.getElementById('root')
 )
