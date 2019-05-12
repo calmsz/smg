@@ -7,12 +7,25 @@ function mapStateToProps (state) {
 }
 
 class ScreenCard extends React.Component {
-  componentDidUpdate (nextProps) {
-    let content = ''
-    for (let index = 0; index < this.props.currentArray.length; index++) {
-      content += `${index}-${this.props.currentArray[index]}  `
+  componentDidUpdate (prevProps) {
+    if (JSON.stringify(prevProps.currentArray) !== JSON.stringify(this.props.currentArray)) {
+      let content = ''
+      let timeToWait = this.props.currentArray.length * 200
+      for (let index = 0; index < this.props.currentArray.length; index++) {
+        content += `${index}-${this.props.currentArray[index]}  `
+      }
+      this.refs.ScreenContent.innerHTML = content
+
+      setTimeout(() => {
+        this.refs.ScreenContent.innerHTML = ''
+      }, timeToWait)
+    } else {
+      if (JSON.stringify(this.props.currentArray) === JSON.stringify(this.props.attemptArray)) {
+        this.refs.ScreenContent.innerHTML = `GOOD MATCH, HIT NEXT ROUND!`
+      } else if (this.props.currentArray.length === this.props.attemptArray.length) {
+        this.refs.ScreenContent.innerHTML = `WRONG MATCH`
+      }
     }
-    this.refs.ScreenContent.innerHTML = content
   }
 
   render () {

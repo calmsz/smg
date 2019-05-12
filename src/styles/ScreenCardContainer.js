@@ -4,7 +4,7 @@ export const ScreenCardContainer = styled.div`
   flex-basis: 50%;
   flex-grow: 1;
   flex-shrink: 0;
-  margin: 0 1rem 1rem 1rem;
+  margin: 1rem 1rem 1rem 1rem;
   padding: 2rem;
   border: 1px solid lightgray;
   background: white;

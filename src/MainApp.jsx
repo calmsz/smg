@@ -28,7 +28,7 @@ class MainApp extends React.Component {
       <MainAppContainer>
         <div><h1>Sequence memory game</h1></div>
         <CheckRound elements={MockedElements} />
-        <ScreenCard content='Hit Play' ref='screen' i='screen' key='screen' />
+        <ScreenCard content='Hit Next Round' ref='screen' i='screen' key='screen' />
         <CardsGrid elements={MockedElements} />
       </MainAppContainer>
     )

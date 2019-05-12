@@ -17,8 +17,12 @@ function mapDispatchToProps (dispatch) {
 }
 class CheckRound extends React.Component {
   handleAddRound () {
-    this.props.dispatch(ClearAttempt())
-    this.props.dispatch(AddRound(getRandomElement(this.props.elements)))
+    if (JSON.stringify(this.props.currentArray) === JSON.stringify(this.props.attemptArray)) {
+      this.props.dispatch(ClearAttempt())
+      this.props.dispatch(AddRound(getRandomElement(this.props.elements)))
+    } else {
+      window.location.reload()
+    }
   }
 
   render () {
